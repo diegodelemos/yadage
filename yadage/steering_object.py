@@ -50,12 +50,15 @@ class YadageSteering():
         if search_initdir and initdir:
             clihelpers.discover_initfiles(initdata,os.path.realpath(initdir))
 
-        workflow_json = workflow_loader.workflow(
-            workflow,
-            toplevel=toplevel,
-            schemadir=schemadir,
-            validate=validate
-        )
+        if isinstance(workflow, dict):
+            workflow_json = workflow
+        else:
+            workflow_json = workflow_loader.workflow(
+                workflow,
+                toplevel=toplevel,
+                schemadir=schemadir,
+                validate=validate
+            )
         with open('{}/yadage_template.json'.format(self.yadagedir), 'w') as f:
             json.dump(workflow_json, f)
         workflowobj = YadageWorkflow.createFromJSON(workflow_json, self.rootprovider)

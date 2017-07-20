@@ -40,7 +40,7 @@ if 'READTHEDOCS' in os.environ:
   ]
 
 setup(
-  name = 'yadage',
+  name = 'yadage-fork',
   version = '0.11.0',
   description = 'yadage - YAML based adage',
   url = '',
